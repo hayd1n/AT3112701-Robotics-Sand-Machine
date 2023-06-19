@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-19 13:48:36
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 15:50:08
+ *  Update Date: 2023-06-19 23:41:53
  *  Description: Move Manager Class
  */
 
@@ -26,6 +26,7 @@ class MoveManager {
 
  public:
   size_t getSize() const;
+  size_t getBufferSpace() const;
   Move& getCurrentMove();
   void clear();
   void addMove(const Move& move);

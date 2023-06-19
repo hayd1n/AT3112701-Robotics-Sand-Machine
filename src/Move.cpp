@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-19 13:24:40
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 15:48:53
+ *  Update Date: 2023-06-19 21:17:44
  *  Description: Move Class
  */
 
@@ -28,7 +28,10 @@ void Move::start() {
   _start_time = millis();
   _dis = _end - _start;
   _dis_polar = Utilities::cartesianToPolar(_dis);
-  _move_time = (_dis_polar.r / _speed) * 1000;
+  if (_dis_polar.r != 0)
+    _move_time = (_dis_polar.r / _speed) * 1000;
+  else
+    _move_time = 0;
   _started = true;
 }
 

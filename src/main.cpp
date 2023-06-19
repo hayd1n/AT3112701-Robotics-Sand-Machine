@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-16 03:02:15
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 17:17:58
+ *  Update Date: 2023-06-20 00:17:50
  *  Description: Sand Machine
  */
 
@@ -78,14 +78,34 @@ void setup() {
   delay(500);
 }
 
+size_t read_data = 0;
+float x, y;
+String buffer;
 void loop() {
+  // 處裡串口通訊
   if (Serial.available() > 0) {
-    float x = Serial.parseFloat();
-    float y = Serial.parseFloat();
-    CartesianCoord coord(x, y);
-    manager.addMove(Move(coord));
+    char c = Serial.read();
+    if (c == ';') {
+      float n = buffer.toFloat();
+      if (read_data == 0) {
+        x = n;
+        read_data += 1;
+      } else {
+        y = n;
+        CartesianCoord coord(x, y);
+        manager.addMove(Move(coord));
+        read_data = 0;
+      }
+      buffer.clear();
+    } else {
+      buffer += c;
+    }
   }
 
   // 刷新位置
-  machine.setPos(manager.move());
+  CartesianCoord move = manager.move();
+  machine.setPos(move);
+
+  // 回傳緩存區剩餘空間
+  // Serial.println(manager.getBufferSpace());
 }

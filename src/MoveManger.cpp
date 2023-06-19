@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-19 13:50:46
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 16:57:17
+ *  Update Date: 2023-06-19 23:42:18
  *  Description: Move Manager Class
  */
 
@@ -16,6 +16,10 @@ void MoveManager::clear() {
 
 size_t MoveManager::getSize() const {
   return _moves.size();
+}
+
+size_t MoveManager::getBufferSpace() const {
+  return _buffer_size - _moves.size();
 }
 
 Move& MoveManager::getCurrentMove() {
@@ -32,17 +36,8 @@ void MoveManager::addMove(const Move& move) {
 CartesianCoord MoveManager::move() {
   // Serial.printf("current_index=%d, size=%d\n", _current_index, _moves.size());
   // 如果沒有移動
-  if (_moves.size() == 0 || _current_index > _moves.size() - 1)
+  if (_moves.size() == 0)
     return _current_pos;
-
-  // 如果當前移動已經結束
-  if (this->getCurrentMove().isEnd()) {
-    // 結束原來的移動
-    this->getCurrentMove().end();
-    // 切換到下一個移動
-    _current_index += 1;
-    return _current_pos;
-  }
 
   // 如果當前移動未開始
   if (!this->getCurrentMove().isStarted()) {
@@ -51,23 +46,34 @@ CartesianCoord MoveManager::move() {
     this->getCurrentMove().start();
   }
 
-  CartesianCoord move = this->getCurrentMove().move();
-  _current_pos = move;
+  CartesianCoord move = _current_pos;
+
+  // 如果當前移動已經結束
+  if (this->getCurrentMove().isEnd()) {
+    // 結束原來的移動
+    this->getCurrentMove().end();
+    _moves.erase(_moves.begin() + _current_index);
+    // // 切換到下一個移動
+    // if (_current_index < _moves.size() - 1)
+    //   _current_index += 1;
+  } else {
+    move = this->getCurrentMove().move();
+    _current_pos = move;
+  }
 
   // 回收已經結束的移動
-  this->collect();
+  // this->collect();
 
   return move;
 }
 
 void MoveManager::collect() {
-  auto it = _moves.begin();
-  while (it != _moves.end()) {
+  for (auto it = _moves.begin(); it != _moves.end(); ++it) {
     bool is_end = (*it).isEnd();
     if (is_end) {
-      _moves.erase(it++);
-      _current_index -= 1;
-    } else
-      ++it;
+      _moves.erase(it);
+      if (_current_index > 0)
+        _current_index -= 1;
+    }
   }
 }
