@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-18 17:39:53
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 02:46:13
+ *  Update Date: 2023-06-19 13:04:30
  *  Description: Sand Machine Class
  */
 
@@ -18,6 +18,10 @@ class SandMachine {
   FastAccelStepper* _stepper1 = nullptr;
   int _stepper0_reset_pin;
   int _stepper1_reset_pin;
+  float _stepper0_offset{0};
+  float _stepper1_offset{0};
+  float _stepper0_last_deg{0};
+  float _stepper1_last_deg{0};
   float _stepper_deg_ratio{STP_DEG_TO_PUL};
   uint32_t _home_speed{STP_HOME_SPEED};
   uint32_t _speed;

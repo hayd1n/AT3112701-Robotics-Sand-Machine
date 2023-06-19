@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-19 00:23:21
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 02:47:11
+ *  Update Date: 2023-06-19 13:11:26
  *  Description: Config
  */
 
@@ -14,8 +14,8 @@
 #define STP0_DIR 22               // 步進馬達0方向腳位
 #define STP1_PUL 32               // 步進馬達1脈衝腳位
 #define STP1_DIR 33               // 步機馬達1方向腳位
-#define STP_SPEED 800 * 8         // 步進馬達速度
-#define STP_ACC_SPEED 400 * 8     // 步進馬達加速度
+#define STP_SPEED 3200 * 8        // 步進馬達速度
+#define STP_ACC_SPEED 3200 * 8    // 步進馬達加速度
 #define STP_HOME_SPEED 200 * 8    // 步進馬達回原點速度
 #define STP_DEG_TO_PUL 44.444444  // 步進馬達角度轉脈衝數
 
@@ -24,4 +24,5 @@
 #define STP1_RST_PIN 16  // 手臂1原點
 
 // Machine
-#define ARM_LENGTH 90
+#define ARM_LENGTH 90  // 手臂長度(mm)
+#define MOVE_SPEED 10  // 移動速度(mm/s)

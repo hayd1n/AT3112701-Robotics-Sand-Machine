@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-18 17:39:46
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 02:59:36
+ *  Update Date: 2023-06-19 13:09:08
  *  Description: Sand Machine Class
  */
 
@@ -54,11 +54,21 @@ bool SandMachine::getStepper1ResetSensor() const {
 }
 
 void SandMachine::moveStepper0ToDeg(float degrees) {
-  _stepper0->moveTo(degrees * _stepper_deg_ratio);
+  float diff = degrees - _stepper0_last_deg;
+  if (abs(diff) > 180) {
+    _stepper0_offset = 360 * (diff > 0 ? -1 : 1);
+  }
+  _stepper0->moveTo((degrees + _stepper0_offset) * _stepper_deg_ratio);
+  _stepper0_last_deg = (degrees + _stepper0_offset);
 }
 
 void SandMachine::moveStepper1ToDeg(float degrees) {
-  _stepper1->moveTo(degrees * _stepper_deg_ratio);
+  float diff = degrees - _stepper1_last_deg;
+  if (abs(diff) > 180) {
+    _stepper1_offset = 360 * (diff > 0 ? -1 : 1);
+  }
+  _stepper1->moveTo((degrees + _stepper1_offset) * _stepper_deg_ratio);
+  _stepper1_last_deg = (degrees + _stepper1_offset);
 }
 
 void SandMachine::home() {
@@ -97,6 +107,7 @@ void SandMachine::home() {
     _stepper1->runBackward();
   _stepper1->forceStop();
   _stepper1->setCurrentPosition(180 * _stepper_deg_ratio);
+  _stepper1_last_deg = 180;
 
   this->setSpeed(original_speed);
 }
