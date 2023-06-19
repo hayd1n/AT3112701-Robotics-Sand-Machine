@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-18 17:39:46
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 13:09:08
+ *  Update Date: 2023-06-19 15:40:18
  *  Description: Sand Machine Class
  */
 
@@ -112,8 +112,8 @@ void SandMachine::home() {
   this->setSpeed(original_speed);
 }
 
-void SandMachine::setPos(float x, float y) {
-  PolarCoord polar = Utilities::cartesianToPolar(CartesianCoord(x, y));
+void SandMachine::setPos(const CartesianCoord& pos) {
+  PolarCoord polar = Utilities::cartesianToPolar(pos);
 
   float arm0_theta = polar.theta - acos(polar.r / (2 * _arm_length));
   float arm1_theta = (2 * polar.theta) - arm0_theta;

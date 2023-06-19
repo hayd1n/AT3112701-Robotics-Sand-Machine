@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-18 17:39:53
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 13:04:30
+ *  Update Date: 2023-06-19 15:39:51
  *  Description: Sand Machine Class
  */
 
@@ -11,6 +11,7 @@
 #include <FastAccelStepper.h>
 
 #include "Config.hpp"
+#include "Coords.hpp"
 
 class SandMachine {
  private:
@@ -69,8 +70,7 @@ class SandMachine {
   /**
    * @brief 設置位置
    *
-   * @param x X
-   * @param y Y
+   * @param pos 座標
    */
-  void setPos(float x, float y);
+  void setPos(const CartesianCoord& pos);
 };

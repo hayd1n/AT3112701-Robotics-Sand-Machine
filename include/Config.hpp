@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-19 00:23:21
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 13:11:26
+ *  Update Date: 2023-06-19 16:43:30
  *  Description: Config
  */
 
@@ -24,5 +24,5 @@
 #define STP1_RST_PIN 16  // 手臂1原點
 
 // Machine
-#define ARM_LENGTH 90  // 手臂長度(mm)
-#define MOVE_SPEED 10  // 移動速度(mm/s)
+#define ARM_LENGTH 90   // 手臂長度(mm)
+#define MOVE_SPEED 100  // 移動速度(mm/s)
