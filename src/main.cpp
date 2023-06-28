@@ -24,26 +24,6 @@ float speed = MOVE_SPEED;  // mm/s
 
 MoveManager manager;
 
-// void moveTest(const CartesianCoord& end) {
-//   CartesianCoord start = current;
-//   CartesianCoord dis = end - start;
-//   PolarCoord dis_polar = Utilities::cartesianToPolar(dis);
-//   float r = dis_polar.r;
-//   unsigned long move_time = (r / speed) * 1000;
-//   unsigned long start_time = millis();
-//   while (millis() - start_time < move_time) {
-//     unsigned long elapsed = millis() - start_time;
-//     float current_r = r * min((float)elapsed / (float)move_time, 1.0f);
-//     PolarCoord move_polar = dis_polar;
-//     move_polar.r = current_r;
-//     CartesianCoord move = Utilities::polarToCartesian(move_polar) + start;
-
-//     machine.setPos(move.x, move.y);
-//     current = move;
-//     Serial.printf("%f %f\n", move.x, move.y);
-//   }
-// }
-
 void setup() {
   // 初始化串口
   Serial.begin(115200);
