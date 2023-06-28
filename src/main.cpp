@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-16 03:02:15
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-20 00:17:50
+ *  Update Date: 2023-06-28 11:09:36
  *  Description: Sand Machine
  */
 
@@ -18,10 +18,6 @@
 
 FastAccelStepperEngine engine = FastAccelStepperEngine();
 SandMachine machine;
-
-CartesianCoord current(0, 0);
-float speed = MOVE_SPEED;  // mm/s
-
 MoveManager manager;
 
 void setup() {
@@ -33,15 +29,13 @@ void setup() {
 
   // 初始化步進馬達0
   FastAccelStepper* stepper0 = engine.stepperConnectToPin(STP0_PUL);
-  if (stepper0) {
+  if (stepper0)
     stepper0->setDirectionPin(STP0_DIR);
-  }
 
   // 初始化步進馬達1
   FastAccelStepper* stepper1 = engine.stepperConnectToPin(STP1_PUL);
-  if (stepper1) {
+  if (stepper1)
     stepper1->setDirectionPin(STP1_DIR);
-  }
 
   // 設置控制器
   machine.setStepper0(stepper0);
@@ -77,9 +71,8 @@ void loop() {
         read_data = 0;
       }
       buffer.clear();
-    } else {
+    } else
       buffer += c;
-    }
   }
 
   // 刷新位置
