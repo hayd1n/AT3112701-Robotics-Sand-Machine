@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-18 17:39:46
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 21:00:13
+ *  Update Date: 2023-11-30 16:31:41
  *  Description: Sand Machine Class
  */
 
@@ -108,6 +108,7 @@ void SandMachine::home() {
   while (!this->getStepper1ResetSensor())
     _stepper1->runBackward();
   _stepper1->forceStop();
+  _stepper1->move(STP1_HOME_OFFSET * _stepper_deg_ratio, true);
   _stepper1->setCurrentPosition(180 * _stepper_deg_ratio);
   _stepper1_last_deg = 180;
 

@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-19 00:23:21
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-20 00:11:03
+ *  Update Date: 2023-11-30 16:33:44
  *  Description: Config
  */
 
@@ -14,6 +14,7 @@
 #define STP0_DIR 22              // 步進馬達0方向腳位
 #define STP1_PUL 32              // 步進馬達1脈衝腳位
 #define STP1_DIR 33              // 步機馬達1方向腳位
+#define STP1_HOME_OFFSET -6      // 步進馬達1原點偏移
 #define STP_SPEED 12800 * 8      // 步進馬達速度
 #define STP_ACC_SPEED 12800 * 8  // 步進馬達加速度
 // #define STP_SPEED 4800 * 8        // 步進馬達速度
