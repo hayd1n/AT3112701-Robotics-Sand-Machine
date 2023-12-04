@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-18 17:39:53
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-19 19:30:33
+ *  Update Date: 2023-12-05 00:22:57
  *  Description: Sand Machine Class
  */
 
@@ -40,6 +40,8 @@ class SandMachine {
   inline void setStepper1(FastAccelStepper* stepper) { _stepper1 = stepper; }
   inline void setStepper0ResetPin(int pin) { _stepper0_reset_pin = pin; }
   inline void setStepper1ResetPin(int pin) { _stepper1_reset_pin = pin; }
+  inline FastAccelStepper* getStepper0() { return _stepper0; }
+  inline FastAccelStepper* getStepper1() { return _stepper1; }
 
  public:
   /**

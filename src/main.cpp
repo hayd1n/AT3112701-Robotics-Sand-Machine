@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-16 03:02:15
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-06-28 11:09:36
+ *  Update Date: 2023-12-05 00:43:42
  *  Description: Sand Machine
  */
 
@@ -15,10 +15,14 @@
 #include "MoveManager.hpp"
 #include "SandMachine.hpp"
 #include "Utilities.hpp"
+#include "Watchdog.hpp"
 
 FastAccelStepperEngine engine = FastAccelStepperEngine();
 SandMachine machine;
 MoveManager manager;
+#ifdef ENABLE_WATCHDOG
+Watchdog watchdog;
+#endif
 
 void setup() {
   // 初始化串口
@@ -78,6 +82,11 @@ void loop() {
   // 刷新位置
   CartesianCoord move = manager.move();
   machine.setPos(move);
+
+#ifdef ENABLE_WATCHDOG
+  // Watchdog 馬達失控保護
+  watchdog.watch(machine);
+#endif
 
   // 回傳緩存區剩餘空間
   // Serial.println(manager.getBufferSpace());

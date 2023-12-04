@@ -2,7 +2,7 @@
  *  Author: 張皓鈞(HAO) m831718@gmail.com
  *  Create Date: 2023-06-19 00:23:21
  *  Editor: 張皓鈞(HAO) m831718@gmail.com
- *  Update Date: 2023-11-30 16:33:44
+ *  Update Date: 2023-12-05 00:42:31
  *  Description: Config
  */
 
@@ -20,6 +20,7 @@
 // #define STP_SPEED 4800 * 8        // 步進馬達速度
 // #define STP_ACC_SPEED 4800 * 8    // 步進馬達加速度
 #define STP_HOME_SPEED 200 * 8    // 步進馬達回原點速度
+#define STP_MAX_SPEED 25600 * 8   // 步進馬達加速度
 #define STP_DEG_TO_PUL 44.444444  // 步進馬達角度轉脈衝數
 
 // Sensors
@@ -29,3 +30,7 @@
 // Machine
 #define ARM_LENGTH 90   // 手臂長度(mm)
 #define MOVE_SPEED 100  // 移動速度(mm/s)
+
+// Safety
+// Watchdog(馬達失控保護)
+#define ENABLE_WATCHDOG
