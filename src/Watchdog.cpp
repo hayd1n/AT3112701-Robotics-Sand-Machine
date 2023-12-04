@@ -9,12 +9,12 @@ void Watchdog::watch(SandMachine& machine) {
   bool error = false;
 
   if (stp0 != nullptr) {
-    if (stp0->getCurrentSpeedInMilliHz() > STP_MAX_SPEED)
+    if (abs(stp0->getCurrentSpeedInMilliHz()) > WATCHDOG_STP_MAX_SPEED)
       error |= true;
   }
 
   if (stp1 != nullptr) {
-    if (stp1->getCurrentSpeedInMilliHz() > STP_MAX_SPEED)
+    if (abs(stp1->getCurrentSpeedInMilliHz()) > WATCHDOG_STP_MAX_SPEED)
       error |= true;
   }
 
